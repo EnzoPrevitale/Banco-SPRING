@@ -14,7 +14,9 @@ public class Account {
     private Double balance;
     private String type;
     @ManyToOne
-    private User clientId;
+    @JoinColumn(name = "client_id")
+    private User client;
+
 
     public Account() {}
 
@@ -58,11 +60,11 @@ public class Account {
         this.type = type;
     }
 
-    public User getClient() {
-        return clientId;
+    public User getClientId() {
+        return client;
     }
 
     public void setClient(User client) {
-        this.clientId = client;
+        this.client = client;
     }
 }
