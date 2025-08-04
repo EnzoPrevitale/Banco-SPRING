@@ -35,7 +35,7 @@ public class AccountController {
         BeanUtils.copyProperties(dto, account);
         account.setBalance(0.0);
         account = service.findClient(account, dto.clientId());
-        account.setAccountNumber(service.generateAccountNumber(dto.agency()));
+        account = service.generateAccountNumber(account, dto.agency());
         return ResponseEntity.status(HttpStatus.CREATED).body(account);
     }
 

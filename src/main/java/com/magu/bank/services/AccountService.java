@@ -44,13 +44,17 @@ public class AccountService {
     }
 
     // Gerar número de conta
-    public String generateAccountNumber(String agency) {
+    public Account generateAccountNumber(Account account, String agency) {
         String accountNumber;
         do {
             int number = random.nextInt(99999999);
             accountNumber = String.valueOf(agency) + "/" + number;
         } while(repository.existsByAccountNumber(accountNumber));
-        return accountNumber;
+
+        account.setAccountNumber(accountNumber);
+        repository.save(account);
+        
+        return account;
     }
 
 
